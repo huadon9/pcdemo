@@ -7,46 +7,44 @@
       border
       fit
       highlight-current-row>
-      <el-table-column align="center" label="样品号" width="95">
+      <el-table-column align="center" label="仪器编号" width="95">
         <template slot-scope="scope">
           {{ scope.row.title }}
         </template>
       </el-table-column>
-      <el-table-column label="样品位置">
+      <el-table-column label="仪器名称" width="200">
         <template slot-scope="scope">
-          {{ scope.row.address }}<img class="min-img" src="@/assets/pic.png"/>
+          {{ scope.row.name }}
         </template>
       </el-table-column>
-      <el-table-column label="异常提醒" width="190" align="center">
+      <el-table-column label="仪器位置"  align="center">
         <template slot-scope="scope">
-          <span :class="{handle: scope.row.warn != '已归还'}">{{ scope.row.warn }}</span>
+          <span>{{ scope.row.address }}</span><img class="min-img" src="@/assets/pic.png"/>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="310" align="center">
+      <el-table-column label="仪器状态" width="110" align="center">
+        <template slot-scope="scope">
+          <span :class="{handle: scope.row.warn != '正常'}">{{ scope.row.warn }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column class-name="status-col" label="额定参数" width="110" align="center">
+        <template slot-scope="scope">
+          {{ scope.row.store }}
+        </template>
+      </el-table-column>
+       <el-table-column class-name="status-col" label="操作" width="210" align="center">
         <template slot-scope="scope">
           <span class="handle">删除</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="handle">修改</span>
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="入库时间" width="210" align="center">
+      <el-table-column align="center" prop="created_at" label="校准时间" width="200">
         <template slot-scope="scope">
           <i class="el-icon-time"/>
           <span>{{ scope.row.display_time }}</span>
         </template>
       </el-table-column>
     </el-table>
-    
-     <el-dialog
-      title="温馨提示"
-      :visible.sync="dialogVisible"
-      width="30%"
-      :before-close="handleClose">
-      <span>样品编号为PL003的样品已过期请重新办理</span>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogVisible = false">我知道了</el-button>
-      </span>
-    </el-dialog>
   </div>
-  
 </template>
 
 <script>
@@ -66,18 +64,11 @@ export default {
   data() {
     return {
       list: null,
-      listLoading: true,
-      dialogVisible: false
+      listLoading: true
     }
   },
   created() {
     this.fetchData()
-  },
-  mounted() {
-    var self = this;
-    setTimeout(() => {
-      self.dialogVisible = true;
-    }, 200)
   },
   methods: {
     fetchData() {
@@ -86,47 +77,43 @@ export default {
       //   this.list = response.data.items
       //   this.listLoading = false
       // })
-       var list = [
+      var list = [
         {
           title: "PL001",
+          name: "氢气发生器",
           address: "二楼 203",
           store: 100,
-          warn: "已归还",
+          warn: "正常",
           display_time: "2019-03-12 22:09"
         },
         {
           title: "PL002",
-          address: "五楼 504",
+          name: "氧气发生器",
+          address: "二楼 204",
           store: 100,
-          warn: "需归还",
+          warn: "维修中...",
           display_time: "2019-03-15 22:09"
         },
         {
           title: "PL003",
-          address: "六楼 609",
+          name: "氧气发生器",
+          address: "二楼 209",
           store: 100,
-          warn: "已过期",
+          warn: "需检修",
           display_time: "2019-03-16 22:09"
         },
         {
           title: "PL004",
-          address: "七楼 712",
+          name: "氧气发生器",
+          address: "二楼 212",
           store: 100,
-          warn: "销毁中...",
+          warn: "正常",
           display_time: "2019-03-17 22:09"
         }
       ];
       this.listLoading = false
       this.list = list;
-    },
-    handleClose(done) {
-      done();
-        // this.$confirm('确认关闭？')
-        //   .then(_ => {
-        //     done();
-        //   })
-        //   .catch(_ => {});
-      }
+    }
   }
 }
 </script>

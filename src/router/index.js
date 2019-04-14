@@ -29,34 +29,58 @@ export const constantRouterMap = [
   {
     path: '/',
     component: Layout,
-    redirect: '/example',
+    redirect: '/specimen',
     name: 'Example',
     hidden: true,
     children: [{
-      path: 'table',
+      path: 'index',
       component: () => import('@/views/table/index')
     }]
   },
 
   {
-    path: '/example',
+    path: '/specimen',
     component: Layout,
-    redirect: '/example/table',
+    redirect: '/specimen/index',
     name: 'Example',
     meta: { title: 'Example', icon: 'example' },
     children: [
       {
-        path: 'table',
+        path: 'index',
         name: 'Table',
         component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        meta: { title: '样品', icon: 'yp' }
       },
+    ]
+  },
+  {
+    path: '/consumable',
+    component: Layout,
+    redirect: '/consumable/index',
+    name: 'Example',
+    meta: { title: 'Example', icon: 'example' },
+    children: [
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
+        path: 'index',
+        name: 'Table',
+        component: () => import('@/views/table.1/index'),
+        meta: { title: '耗材', icon: 'hc' }
+      },
+    ]
+  },
+  {
+    path: '/instrument',
+    component: Layout,
+    redirect: '/instrument/index',
+    name: 'Example',
+    meta: { title: 'Example', icon: 'example' },
+    children: [
+      {
+        path: 'index',
+        name: 'Table',
+        component: () => import('@/views/table.2/index'),
+        meta: { title: '仪器', icon: 'yiqi' }
+      },
     ]
   },
 

@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <h3 class="title">vue-admin-template</h3>
+      <h3 class="title"><img src="@/assets/load_logo.png"/></h3>
       <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="user" />
@@ -25,13 +25,12 @@
       </el-form-item>
       <el-form-item>
         <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
-          Sign in
+          登录
         </el-button>
       </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: admin</span>
-      </div>
+     
+      <div class="forget">忘记密码</div> 
+     
     </el-form>
   </div>
 </template>
@@ -107,8 +106,8 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-$bg:#2d3a4b;
-$light_gray:#eee;
+$bg:#c51137;
+$light_gray:#fff;
 
 /* reset element-ui css */
 .login-container {
@@ -135,15 +134,29 @@ $light_gray:#eee;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     color: #454545;
+    width: 80%;
+    margin: 0 auto 22px auto;
   }
 }
 
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
+$bg:#c51137;
+$dark_gray:#fff;
 $light_gray:#eee;
+.el-button--primary{
+  background-color: rgb(249, 128, 47);
+  border: none;
+}
+.forget{
+  width: 80%;
+  margin: 0 auto;
+  font-size: 12px;
+  color: $dark_gray;
+  text-align: right;
+  cursor: pointer;
+}
 .login-container {
   position: fixed;
   height: 100%;
@@ -176,12 +189,13 @@ $light_gray:#eee;
     display: inline-block;
   }
   .title {
-    font-size: 26px;
-    font-weight: 400;
-    color: $light_gray;
+    font-size: 26px;  
     margin: 0px auto 40px auto;
     text-align: center;
-    font-weight: bold;
+    width: 340px;
+    img{
+      width: 100%;
+    }
   }
   .show-pwd {
     position: absolute;

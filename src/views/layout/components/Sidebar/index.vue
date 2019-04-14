@@ -1,5 +1,6 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
+    
     <el-menu
       :default-active="$route.path"
       :collapse="isCollapse"
@@ -9,6 +10,7 @@
       :collapse-transition="false"
       mode="vertical"
     >
+      <div>4343434</div>
       <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path"/>
     </el-menu>
   </el-scrollbar>
@@ -37,3 +39,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .scrollbar-wrapper {
+    border-right: 1px solid #eee;
+  }
+</style>
